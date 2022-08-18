@@ -1,15 +1,39 @@
 import Expenses from 'components/Expenses/Expenses';
-import React from 'react';
+import NewExpense from 'components/NewExpense/NewExpense';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-	const expenses = [
-		{ title: 'Car', amount: 2593.43, date: new Date(1999, 9, 9) },
-		{ title: 'Building', amount: 2511193.43, date: new Date(1999, 10, 1) },
-		{ title: 'What', amount: 432.43, date: new Date(2222, 10, 1) },
+	const initialExpenses = [
+		{
+			id: Math.random(),
+			title: 'Car',
+			amount: 2593.43,
+			date: new Date(1999, 9, 9),
+		},
+		{
+			id: Math.random(),
+			title: 'Building',
+			amount: 2511193.43,
+			date: new Date(1999, 10, 1),
+		},
+		{
+			id: Math.random(),
+			title: 'What',
+			amount: 432.43,
+			date: new Date(2222, 10, 1),
+		},
 	];
+	const [expenses, setexpenses] = useState(initialExpenses);
+
+	const addNewExpenseHandler = (data) => {
+		setexpenses((prev) => {
+			return [...prev, data];
+		});
+	};
 	return (
 		<div className='App'>
+			<NewExpense onAddNewExpense={addNewExpenseHandler} />
 			<Expenses items={expenses} />
 		</div>
 	);
