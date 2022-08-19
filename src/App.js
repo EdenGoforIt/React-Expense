@@ -9,19 +9,19 @@ function App() {
 			id: Math.random(),
 			title: 'Car',
 			amount: 2593.43,
-			date: new Date(1999, 9, 9),
+			date: new Date(2019, 9, 9),
 		},
 		{
 			id: Math.random(),
 			title: 'Building',
 			amount: 2511193.43,
-			date: new Date(1999, 10, 1),
+			date: new Date(2020, 10, 1),
 		},
 		{
 			id: Math.random(),
 			title: 'What',
 			amount: 432.43,
-			date: new Date(2222, 10, 1),
+			date: new Date(2021, 10, 1),
 		},
 	];
 	const [expenses, setexpenses] = useState(initialExpenses);
