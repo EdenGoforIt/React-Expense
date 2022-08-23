@@ -1,7 +1,9 @@
+import Chart from 'components/Chart/Chart';
+import ExpenseChart from 'components/ExpenseChart/ExpenseChart';
 import ExpensesFilter from 'components/ExpenseFilter/ExpensesFilter';
+import ExpenseList from 'components/ExpenseList/ExpenseList';
 import Card from 'components/UI/Card';
 import React, { useState } from 'react';
-import ExpenseItem from './ExpenseItem';
 import './Expenses.css';
 
 const Expenses = (props) => {
@@ -15,23 +17,6 @@ const Expenses = (props) => {
 		(x) => x.date.getFullYear().toString() === filteredYear
 	);
 
-	let content = (
-		<p className='text-center' style={{ color: 'white' }}>
-			No expenses Found
-		</p>
-	);
-
-	if (filteredExpenses.length) {
-		content = filteredExpenses.map((item, index) => (
-			<ExpenseItem
-				key={item.id}
-				title={item.title}
-				amount={item.amount}
-				date={item.date}
-			></ExpenseItem>
-		));
-	}
-
 	return (
 		<div>
 			<Card className='expenses'>
@@ -39,7 +24,8 @@ const Expenses = (props) => {
 					onDropdownChange={onExpenseFilterChange}
 					selected={filteredYear}
 				/>
-				{content}
+				<ExpenseChart expenses={filteredExpenses} />
+				<ExpenseList items={filteredExpenses} />
 			</Card>
 		</div>
 	);

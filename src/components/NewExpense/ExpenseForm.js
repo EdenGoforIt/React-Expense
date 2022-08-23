@@ -1,5 +1,6 @@
 import './ExpenseForm.css';
 import React, { useState } from 'react';
+import Button from 'components/UI/Button/Button';
 
 const ExpenseForm = (props) => {
 	const [userInput, setUserInput] = useState({
@@ -38,9 +39,9 @@ const ExpenseForm = (props) => {
 		//as by default it's trying to send the request to the server
 		event.preventDefault();
 
-		const expenseDate = {
+		const expenseData = {
 			title: userInput.title,
-			amount: userInput.amount,
+			amount: +userInput.amount,
 			date: new Date(userInput.date),
 		};
 
@@ -52,7 +53,7 @@ const ExpenseForm = (props) => {
 			};
 		});
 
-		props.onSaveExpenseData(expenseDate);
+		props.onSaveExpenseData(expenseData);
 	};
 
 	return (
@@ -86,7 +87,10 @@ const ExpenseForm = (props) => {
 				</div>
 			</div>
 			<div className='new-expense__actions'>
-				<button type='submit'>Add Expense</button>
+				<Button type='submit'>Add Expense</Button>
+				<Button type='button' onClick={props.onCancel}>
+					Cancel
+				</Button>
 			</div>
 		</form>
 	);
