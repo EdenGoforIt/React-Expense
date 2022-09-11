@@ -1,5 +1,5 @@
 import './ExpenseForm.css';
-import React, { useReducer, useState } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 import Button from 'components/UI/Button/Button';
 import ErrorModal from 'components/UI/ErrorModal/ErrorModal';
 import AuthContext from 'components/store/auth-context';

@@ -51,10 +51,10 @@ function App() {
 			date: new Date(2021, 11, 1),
 		},
 	];
-	const [expenses, setexpenses] = useState(initialExpenses);
+	const [expenses, setExpenses] = useState(initialExpenses);
 
 	const addNewExpenseHandler = (data) => {
-		setexpenses((prev) => {
+		setExpenses((prev) => {
 			return [...prev, data];
 		});
 	};
