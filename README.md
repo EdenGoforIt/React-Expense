@@ -1,3 +1,11 @@
+# Introduction
+This project is an Expense App from which the user could enter their spending and show how much they have spent through out years
+
+# Interface
+
+![image](https://user-images.githubusercontent.com/79078528/189547054-d136aed4-b179-40db-8f2d-89dc58c94b7c.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
