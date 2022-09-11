@@ -16,13 +16,14 @@ const userInputReducer = (state, action) => {
 	if (action.type === ACTIONS.USER_INPUT) {
 		return {
 			payload: action.payload,
+			isValid: userInputIsValid(action.val),
 		};
 	}
 	if (action.type === ACTIONS.INPUT_BLUR) {
-		return { value: state.payload };
+		return { value: state.payload, isValid: userInputIsValid(state.value) };
 	}
 
-	return { payload: '' };
+	return { payload: '', isValid: false };
 };
 
 const ExpenseForm = (props) => {
@@ -40,6 +41,7 @@ const ExpenseForm = (props) => {
 			amount: '',
 			date: '',
 		},
+		isValid: null,
 	});
 
 	const [error, setError] = useState({
@@ -47,6 +49,32 @@ const ExpenseForm = (props) => {
 		message: '',
 		errorOccurred: false,
 	});
+	const titleChangeHandler = (event) => {
+		setUserInput((previousState) => {
+			return {
+				...previousState,
+				title: event.target.value,
+			};
+		});
+	};
+
+	const amountChangeHandler = (event) => {
+		setUserInput((previousState) => {
+			return {
+				...previousState,
+				amount: event.target.value,
+			};
+		});
+	};
+
+	const dateChangeHandler = (event) => {
+		setUserInput((previousState) => {
+			return {
+				...previousState,
+				date: event.target.value,
+			};
+		});
+	};
 
 	const submitHandler = (event) => {
 		//as by default it's trying to send the request to the server
@@ -104,20 +132,29 @@ const ExpenseForm = (props) => {
 				<div className='new-expense__controls'>
 					<div className='new-expense__control'>
 						<label>Title</label>
-						<input type='text' value={userInputState.payload.title} />
+						<input
+							type='text'
+							value={userInputState.val.title}
+							onChange={titleChangeHandler}
+						/>
 					</div>
 					<div className='new-expense__control'>
 						<label>Amount</label>
 						<input
 							type='number'
-							value={userInputState.payload.amount}
+							value={userInputState.val.amount}
+							onChange={amountChangeHandler}
 							min='0.01'
 							step='0.01'
 						/>
 					</div>
 					<div className='new-expense__control'>
 						<label>Date</label>
-						<input type='date' value={userInputState.payload.date} />
+						<input
+							type='date'
+							value={userInputState.val.date}
+							onChange={dateChangeHandler}
+						/>
 					</div>
 				</div>
 				<div className='new-expense__actions'>
