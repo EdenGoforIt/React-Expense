@@ -2,6 +2,7 @@ import './ExpenseForm.css';
 import React, { useReducer, useState } from 'react';
 import Button from 'components/UI/Button/Button';
 import ErrorModal from 'components/UI/ErrorModal/ErrorModal';
+import AuthContext from 'components/store/auth-context';
 
 export const ACTIONS = {
 	USER_INPUT: 'user-input',
@@ -27,6 +28,8 @@ const userInputReducer = (state, action) => {
 };
 
 const ExpenseForm = (props) => {
+	const ctx = useContext(AuthContext);
+
 	const [userInput, setUserInput] = useState({
 		title: '',
 		amount: '',
@@ -119,6 +122,7 @@ const ExpenseForm = (props) => {
 	const errorHandler = () => {
 		setError((prev) => ({ ...prev, errorOccurred: false }));
 	};
+
 	return (
 		<div>
 			{error.errorOccurred && (

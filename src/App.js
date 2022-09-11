@@ -1,5 +1,8 @@
 import Expenses from 'components/Expenses/Expenses';
 import NewExpense from 'components/NewExpense/NewExpense';
+import AuthContext, {
+	AuthContextProvider,
+} from 'components/store/auth-context';
 import React, { useState } from 'react';
 import './App.css';
 
@@ -55,11 +58,14 @@ function App() {
 			return [...prev, data];
 		});
 	};
+
 	return (
-		<div className='App'>
-			<NewExpense onAddNewExpense={addNewExpenseHandler} />
-			<Expenses items={expenses} />
-		</div>
+		<AuthContextProvider>
+			<div className='App'>
+				<NewExpense onAddNewExpense={addNewExpenseHandler} />
+				<Expenses items={expenses} />
+			</div>
+		</AuthContextProvider>
 	);
 }
 
